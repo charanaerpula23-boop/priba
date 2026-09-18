@@ -1,5 +1,5 @@
-# Use an official Node.js runtime as a parent image
-FROM node:18-bullseye-slim
+# Use an official Node.js runtime as a parent image (Bookworm is the latest Debian stable)
+FROM node:20-bookworm-slim
 
 # Install Python (required by yt-dlp) and FFmpeg (required for media processing)
 RUN apt-get update && \
