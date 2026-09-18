@@ -61,7 +61,7 @@ app.get('/stream', (req, res) => {
         return res.status(400).send('Please provide a YouTube URL');
     }
 
-    console.log(\`Starting stream for: \${youtubeUrl}\`);
+    console.log(`Starting stream for: ${youtubeUrl}`);
 
     // Add flags to help bypass YouTube's datacenter blocks and ensure output is a playable stream
     const ytdlp = spawn('yt-dlp', [
@@ -88,11 +88,11 @@ app.get('/stream', (req, res) => {
     ytdlp.stderr.on('data', (data) => {
         const msg = data.toString();
         errorMessage += msg;
-        console.error(\`yt-dlp stderr: \${msg}\`);
+        console.error(`yt-dlp stderr: ${msg}`);
     });
 
     ytdlp.on('close', (code) => {
-        console.log(\`yt-dlp process exited with code \${code}\`);
+        console.log(`yt-dlp process exited with code ${code}`);
         if (!hasData) {
             // If we got no audio data, YouTube likely blocked us.
             console.error("No data piped. Error:", errorMessage);
@@ -112,5 +112,5 @@ app.get('/stream', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(\`Server is running on port \${port}\`);
+    console.log(`Server is running on port ${port}`);
 });
